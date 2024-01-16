@@ -23,7 +23,6 @@ export class UserRepository {
   async save(data: User): Promise<User> {
     // Use Promise para indicar que retorna um User
     this.users.push(data)
-    console.log(data)
 
     return data
   }
