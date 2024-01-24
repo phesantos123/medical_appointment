@@ -1,4 +1,5 @@
 import { User } from '../../entities/user.entity'
+import { ParameterRequiredError } from '../../errors/parameter-required-error'
 import { UserRepository } from '../../repositories/user.repository'
 
 type UserRequest = {
@@ -13,12 +14,12 @@ export class CreateUserUseCase {
     const user = User.create(data)
     if (!data.username || !data.password) {
       // Modifiquei a lógica de verificação
-      throw new Error('Username/password is required')
+      throw new ParameterRequiredError('Username/password is required')
     }
     const existUser = await userRepository.findByUsername(data.username)
 
     if (existUser) {
-      throw new Error('Username already exists')
+      throw new ParameterRequiredError('Username already exists')
     }
 
     const userCreated = await userRepository.save(user) // Corrigido para userRepository.save(user)
