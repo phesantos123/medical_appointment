@@ -1,18 +1,18 @@
-import { User } from '../entities/user.entity'
+import { User } from '../../entities/user.entity'
 
-export class UserRepository {
+export class userRepository {
   private users: User[] // Use private para restringir o acesso direto fora da classe
-  private static instance: UserRepository
+  private static instance: userRepository
 
   private constructor() {
     this.users = []
   }
 
   static getInstance() {
-    if (!UserRepository.instance) {
-      UserRepository.instance = new UserRepository()
+    if (!userRepository.instance) {
+      userRepository.instance = new userRepository()
     }
-    return UserRepository.instance
+    return userRepository.instance
   }
 
   async findByUsername(username: string): Promise<User | undefined> {
