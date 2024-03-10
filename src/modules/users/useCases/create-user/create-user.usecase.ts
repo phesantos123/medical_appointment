@@ -1,3 +1,4 @@
+import { CustomError } from "../../../../errors/custom.error";
 import { ParameterRequiredError } from "../../../../errors/parameter-required-error";
 import { User } from "../../entities/user.entity";
 import { IuserRepository } from "../../repositories/user.repository";
@@ -9,7 +10,7 @@ type UserRequest = {
 };
 
 export class CreateUserUseCase {
-  constructor(private userRepository: IuserRepository) {}
+  constructor(private userRepository: IuserRepository) { }
 
   async execute(data: UserRequest) {
     const user = User.create(data);
@@ -20,7 +21,7 @@ export class CreateUserUseCase {
     const existUser = await this.userRepository.findByUsername(data.username);
 
     if (existUser) {
-      throw new ParameterRequiredError("Username already exists");
+      throw new CustomError("Username already exists", 400, "USER_EXITS_ERROR");
     }
     const userCreated = await this.userRepository.save(user); // Corrigido para userRepository.save(user)
 
