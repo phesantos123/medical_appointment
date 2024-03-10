@@ -2,15 +2,15 @@ import { Request, Response } from "express";
 import { CreateUserUseCase } from "./create-user.usecase";
 import { logger } from "../../../../utils/logger";
 import { IuserRepository } from "../../repositories/user.repository";
-
+import { IPasswordCrypto } from '../../../../infra/shared/crypto/password.crypto';
 export class CreateUserController {
-  constructor(private userRepository: IuserRepository) {}
+  constructor(private userRepository: IuserRepository, private passwordCrypto: IPasswordCrypto) { }
 
   async handle(request: Request, response: Response) {
     logger.info("Usuario sendo criado !");
     try {
       const data = request.body;
-      const userCase = new CreateUserUseCase(this.userRepository);
+      const userCase = new CreateUserUseCase(this.userRepository, this.passwordCrypto);
 
       const result = await userCase.execute(data);
       return response.json(result);
