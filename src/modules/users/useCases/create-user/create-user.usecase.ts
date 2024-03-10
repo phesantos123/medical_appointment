@@ -1,4 +1,4 @@
-import { userRepository } from "./../../repositories/implementations/user.repository";
+import { userRepository } from "../../repositories/implementations/user.memory.repository";
 import { ParameterRequiredError } from "../../../../errors/parameter-required-error";
 import { User } from "../../entities/user.entity";
 import { IuserRepository } from "../../repositories/user.repository";
