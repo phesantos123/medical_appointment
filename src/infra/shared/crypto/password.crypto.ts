@@ -1,4 +1,4 @@
 export interface IPasswordCrypto {
-    hash(password: string): Promise<String>;
+    hash(password: string): Promise<string>;
 
 }

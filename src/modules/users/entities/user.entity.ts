@@ -8,7 +8,7 @@ type Iuser = {
 
 export class User {
   name: string
-  password: String
+  password: string
   username: string
   id: string
   isAdmin: boolean
